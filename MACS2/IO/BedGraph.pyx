@@ -1,5 +1,4 @@
 # cython: language_level=3
-# cython: profile=True
 # Time-stamp: <2019-10-30 17:48:55 taoliu>
 
 """Module for BedGraph data class.

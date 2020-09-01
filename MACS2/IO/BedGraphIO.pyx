@@ -1,5 +1,4 @@
 # cython: language_level=3
-# cython: profile=True
 # Time-stamp: <2019-10-30 17:49:01 taoliu>
 
 """Module Description:  IO Module for bedGraph file

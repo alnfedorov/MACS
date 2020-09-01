@@ -1,5 +1,4 @@
 # cython: language_level=3
-# cython: profile=True
 # Time-stamp: <2019-10-30 17:28:00 taoliu>
 
 """Module Description: statistics functions to calculate p-values
@@ -194,7 +193,7 @@ cpdef float64_t chisq_logp_e ( float64_t x, uint32_t df, bool log10 = False ):
     else:
         return -s
     
-cpdef float64_t poisson_cdf ( uint32_t n, float64_t lam, bool lower=False, bool log10=False ):
+cpdef float64_t poisson_cdf ( uint32_t n, float64_t lam, bool lower, bool log10 ):
     """Poisson CDF evaluater.
 
     This is a more stable CDF function. It can tolerate large lambda

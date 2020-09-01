@@ -1,5 +1,4 @@
 # cython: language_level=3
-# cython: profile=True
 # Time-stamp: <2019-10-30 16:33:34 taoliu>
 
 """Module Description: Detect peaks, main module
@@ -413,11 +412,11 @@ class PeakDetect:
 
     #     self.info("#3 diag: call negative peak candidates")
     #     negative_peak_candidates = self.__call_peaks_from_trackI (self.control)
-        
+
     #     self.info("#3 diag: use control data to filter peak candidates...")
     #     final_peaks_percent = self.__filter_w_control(peak_candidates,self.treat,self.control, ratio_treat2control)
     #     return final_peaks_percent
-        
+
     # def __diag_wo_control (self):
     #     # sample
     #     sample_peaks = {}
@@ -442,7 +441,7 @@ class PeakDetect:
     # def __overlap (self, gold_peaks, sample_peaks, top=90,bottom=10,step=-10):
     #     """Calculate the overlap between several fe range for the
     #     golden peaks set and results from sampled data.
-        
+
     #     """
     #     gp = PeakIO()
     #     gp.init_from_dict(gold_peaks)
@@ -453,11 +452,11 @@ class PeakDetect:
     #     femin = self.femin
     #     diag_result = []
     #     for f in xrange(femin, femax, self.festep):
-            
+
     #         fe_low = f
     #         fe_up = f + self.festep
     #         self.debug("#3 diag: fe range = %d -- %d" % (fe_low, fe_up))
-            
+
     #         r = self.__overlap_fe(gold_peaks, sample_peaks, fe_low, fe_up, top, bottom, step)
     #         if r:
     #             diag_result.append(r)

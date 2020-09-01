@@ -1,5 +1,4 @@
 # cython: language_level=3
-# cython: profile=True
 # Time-stamp: <2019-12-18 16:49:03 taoliu>
 
 """Module Description: functions to find maxima minima or smooth the
