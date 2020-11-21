@@ -14,7 +14,7 @@ the distribution).
 # ------------------------------------
 
 from collections import Counter
-from copy import copy
+from copy import deepcopy, copy
 import logging
 from time import time as ttime
 import _pickle as cPickle
@@ -325,9 +325,7 @@ cdef class CallerFromAlignments:
         cdef:
             bytes f
 
-        for f in self.pileup_data_files.values():
-            if os.path.isfile( f ):
-                os.unlink( f )
+        del self.pileup_data_files
         return
 
     cpdef set_pseudocount( self, float32_t pseudocount ):
@@ -357,19 +355,8 @@ cdef class CallerFromAlignments:
         # it. Otherwise, load them instead of calculating new pileup
         # values.
         if chrom in self.pileup_data_files:
-            try:
-                f = open( self.pileup_data_files[ chrom ],"rb" )
-                self.chr_pos_treat_ctrl = cPickle.load( f )
-                f.close()
-                return
-            except:
-                temp_fd, temp_filename = mkstemp()
-                os.close(temp_fd)
-                self.pileup_data_files[ chrom ] = temp_filename
-        else:
-            temp_fd, temp_filename = mkstemp()
-            os.close(temp_fd)
-            self.pileup_data_files[ chrom ] = temp_filename.encode()
+            self.chr_pos_treat_ctrl = deepcopy(self.pileup_data_files[chrom])
+            return
 
         # reset or clean existing self.chr_pos_treat_ctrl
         if self.chr_pos_treat_ctrl:     # not a beautiful way to clean
@@ -403,13 +390,7 @@ cdef class CallerFromAlignments:
         ctrl_pv  = []
 
         # save data to temporary file
-        try:
-            f = open(self.pileup_data_files[ chrom ],"wb")
-            cPickle.dump( self.chr_pos_treat_ctrl, f , protocol=-1 )
-            f.close()
-        except:
-            # fail to write then remove the key in pileup_data_files
-            self.pileup_data_files.pop(chrom)
+        self.pileup_data_files[chrom] = deepcopy(self.chr_pos_treat_ctrl)
         return
 
     cdef list __chrom_pair_treat_ctrl ( self, treat_pv, ctrl_pv ):
