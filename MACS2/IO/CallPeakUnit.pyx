@@ -17,7 +17,6 @@ from collections import Counter
 from copy import deepcopy, copy
 import logging
 from time import time as ttime
-import _pickle as cPickle
 from tempfile import mkstemp
 import os
 
@@ -325,7 +324,7 @@ cdef class CallerFromAlignments:
         cdef:
             bytes f
 
-        del self.pileup_data_files
+        self.pileup_data_files.clear()
         return
 
     cpdef set_pseudocount( self, float32_t pseudocount ):
