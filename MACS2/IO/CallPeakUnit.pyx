@@ -58,8 +58,8 @@ cdef:
     vector[unordered_map[float32_t, float32_t]] pscore_dict     # poisson x -> {lambda: pscore}
     map[pair[float32_t, float32_t], float32_t] logLR_dict       #
 
-# Reserve memory for poisson x in [0, 999].
-pscore_dict.resize(1000)
+# Reserve memory for poisson x in [0, 1000000].
+pscore_dict.resize(1000000)
 
 cdef inline float32_t get_pscore ( float32_t x, float32_t l ):
     cdef:
